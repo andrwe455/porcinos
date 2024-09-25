@@ -1,7 +1,7 @@
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 
 const mongoose = require('mongoose');
-const uri3 = "mongodb://0.tcp.ngrok.io:12509";
+const uri3 = "mongodb://0.tcp.ngrok.io:12509/porcinos";
 
 function connect() {
     return mongoose.connect(uri3)
