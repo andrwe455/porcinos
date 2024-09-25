@@ -76,7 +76,7 @@ function getClientes(req, res) {
         .catch((error) => {
             res.status(400).json(error);
         });
-}   
+}
 
 function getCliente(req, res) {
     const { Cedula } = req.params;
