@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  </head>
+<body>
+  <div class="container">
+    <h1>Eliminar Porcino</h1>
+    <p>¿Estás seguro de que deseas eliminar el porcino con la identificación?</p>
+    <p id="porcinoIdentificacion"></p>
+    <button id="deleteButton">Eliminar</button>
+    <div id="message"></div>
+  </div>
+
+  <script>
+    // ... (código similar a updatePorcino.html para obtener la identificación del porcino de la URL)
+
+    const deleteButton = document.getElementById('deleteButton');
+    const message = document.getElementById('message');
+    const porcinoIdentificacion = document.getElementById('porcinoIdentificacion');
+
+    porcinoIdentificacion.textContent = identificacion;
+
+    deleteButton.addEventListener('click', async () => {
+      try {
+        const response = await fetch(`/deletePorcino/${identificacion}`, {
+          method: 'DELETE'
+        });
+
+        if (response.ok) {
+          message.textContent = 'Porcino eliminado correctamente.';
+        } else {
+          const errorData = await response.json();
+          message.textContent = errorData.message || 'Error al eliminar el porcino';
+        }
+      } catch (error) {
+        console.error('Error al eliminar el porcino:', error);
+        message.textContent = 'Error al eliminar el porcino';
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eliminar Cliente</title>
+  <style>
+    /* Estilos básicos y minimalistas */
+    body {
+      font-family: Arial, sans-serif;
+      /* ... resto de los estilos */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Eliminar Cliente</h1>
+    <p>¿Estás seguro de que deseas eliminar al cliente con la cédula?</p>
+    <p id="clienteCedula"></p>
+    <button id="deleteButton">Eliminar</button>
+    <div id="message"></div>
+  </div>
+
+  <script>
+    // Obtener la cédula del cliente desde la URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const cedula = urlParams.get('cedula');
+
+    // Mostrar la cédula del cliente
+    const clienteCedulaElement = document.getElementById('clienteCedula');
+    clienteCedulaElement.textContent = cedula;
+
+    // Botón para eliminar el cliente
+    const deleteButton = document.getElementById('deleteButton');
+    deleteButton.addEventListener('click', async () => {
+      try {
+        const response = await fetch(`/deleteCliente/${cedula}`, {
+          method: 'DELETE'
+        });
+
+        if (response.ok) {
+          // Cliente eliminado exitosamente
+          message.textContent = 'Cliente eliminado correctamente.';
+        } else {
+          // Error al eliminar el cliente
+          const errorData = await response.json();
+          message.textContent = errorData.message || 'Error al eliminar el cliente';
+        }
+      } catch (error) {
+        console.error('Error al eliminar el cliente:', error);
+        message.textContent = 'Error al eliminar el cliente';
+      }
+    });
+  </script>
+</body>
+</html>

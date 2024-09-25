@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+  <div class="container">
+    <h1>Ver Cliente</h1>
+    <div id="clienteDetails"></div>
+  </div>
+
+  <script>
+    // Obtener la cédula del cliente desde la URL
+    // ...
+
+    fetch(`/getCliente/${cedula}`)
+      .then(response => response.json())
+      .then(data => {
+        const clienteDetails = document.getElementById('clienteDetails');
+        clienteDetails.innerHTML = `
+          <p>Cédula: ${data.Cedula}</p>
+          <p>Nombre: ${data.Nombre}</p>
+          `;
+      })
+      .catch(error => {
+        console.error('Error al obtener el cliente:', error);
+        // Mostrar un mensaje de error al usuario
+      });
+  </script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ver Porcinos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #333;
+    }
+
+    h1 {
+      color: #4CAF50;
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 8px;
+      border: 1px solid #ddd;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    .error {
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Ver Porcinos</h1>
+    <div id="message"></div>
+    <table id="porcinosTable">
+      <thead>
+        <tr>
+          <th>Identificación</th>
+          <th>Cliente (ID)</th>
+        </tr>
+      </thead>
+      <tbody>
+        </tbody>
+    </table>
+  </div>
+
+  <script>
+    const porcinosTable = document.getElementById('porcinosTable');
+    const message = document.getElementById('message');
+
+    // Fetch porcino
+    window.onload = async () => {
+      try {
+        const response = await fetch('/getPorcinos'); //ajustar url
+        const data = await response.json();
+
+        if (response.ok) {
+          populatePorcinoTable(data);
+        } else {
+          message.textContent = data.message || 'Error fetching porcinos';
+        }
+      } catch (error) {
+        console.error('Error fetching porcinos:', error);
+        message.textContent = 'Error fetching porcinos';
+      }
+    };
+
+    function populatePorcinoTable(porcinos) {
+      const tableBody = porcinosTable.querySelector('tbody');
+      tbody.innerHTML = ''; // Clear existing data
+
+      porcinos.forEach(porcino => {
+        const tableRow = document.createElement('tr');
+        const identificacionCell = document.createElement('td');
+        const clienteIdCell = document.createElement('td');
+
+        identificacionCell.textContent = porcino.identificacion;
+        clienteIdCell.textContent = porcino.cliente;
+
+        tableRow.appendChild(identificacionCell);
+        tableRow.appendChild(clienteIdCell);
+
+        tbody.appendChild(tableRow);
+      });
+    }
+  </script>
+</body>
+</html>
