@@ -10,7 +10,42 @@
   </div>
 
   <script>
-    // ... (código similar a updatePorcino.html, pero para clientes)
+    const updateclienteForm = document.getElementById('updateclienteForm');
+    const message = document.getElementById('message');
+
+    // Obtener la identificación del cliente desde la URL (por ejemplo, como parámetro)
+    const urlParams = new URLSearchParams(window.location.search);
+    const identificacion = urlParams.get('cedula');
+
+    // Llenar el campo de cedula con el valor obtenido
+    document.getElementById('cedula').value = cedula;
+
+    updatePorcinoForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const formData = new FormData(updateclienteForm);
+      const data = Object.fromEntries(formData.entries());
+
+      try {
+        const response = await fetch(`/updatecliente/${cedula}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
+
+        if (response.ok) {
+          message.textContent = 'cliente actualizado correctamente.';
+        } else {
+          const errorData = await response.json();
+          message.textContent = errorData.message || 'Error al actualizar el cliente';
+        }
+      } catch (error) {
+        console.error('Error al actualizar el cliente:', error);
+        message.textContent = 'Error al actualizar el cliente';
+      }
+    });
   </script>
 </body>
 </html>
