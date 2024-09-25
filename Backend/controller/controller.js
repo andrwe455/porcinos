@@ -3,15 +3,22 @@ const Cliente = require('../schemas/clientesSchema');
 
 
 function createPorcino(req, res) {
-    const { identificacion, Raza, Edad, Peso, Alimentacion, Cliente } = req.body;
-    const porcino = new porcinoSchema({ identificacion, Raza, Edad, Peso, Alimentacion, Cliente });
-    porcino.save()
-        .then((porcino) => {
-            res.status(201).json(porcino);
-        })
-        .catch((error) => {
-            res.status(400).json(error);
-        });
+    const { identificacion, clienteId } = req.body;
+    Cliente.findById(clienteId)
+    .then((cliente) => {
+        if (!cliente) {
+            return ({ message: 'Cliente not found' });
+        }
+
+        const porcino = new porcinoSchema({ identificacion, cliente: clienteId });
+        return porcino.save();
+    })
+    .then((porcino) => {
+        res.status(201).json(porcino);
+    })
+    .catch((error) => {
+        res.status(400).json(error);
+    });
 }
 
 function getPorcinos(req, res) {
