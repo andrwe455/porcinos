@@ -16,5 +16,8 @@
     "express": "^4.21.0",
     "mongoose": "^8.6.3",
     "porcinos": "file:"
+  },
+  "devDependencies": {
+    "ejs": "^3.1.10"
   }
 }
