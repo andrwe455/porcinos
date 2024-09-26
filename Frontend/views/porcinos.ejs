@@ -53,6 +53,10 @@
         <tr>
           <th>Identificación</th>
           <th>Cliente (ID)</th>
+          <th>Alimentacion</th>
+          <th>Edad</th>
+          <th>Raza</th>
+          <th>Peso</th>
         </tr>
       </thead>
       <tbody>
@@ -67,14 +71,13 @@
     // Fetch porcino
     window.onload = async () => {
       try {
-        const response = await fetch('mongodb://0.tcp.ngrok.io:12509/porcinos'); //ajustar url
-        const data = await response.json();
-
-        if (response.ok) {
+        fetch('/porcinos').then(response => response.json()).then(data => {
+          console.log('Porcinos:', data);
           populatePorcinoTable(data);
-        } else {
-          message.textContent = data.message || 'Error fetching porcinos';
-        }
+        }).catch(error => {
+          console.error('Error fetching porcinos:', error);
+          message.textContent = 'Error fetching porcinos';
+        });
       } catch (error) {
         console.error('Error fetching porcinos:', error);
         message.textContent = 'Error fetching porcinos';
@@ -83,20 +86,34 @@
 
     function populatePorcinoTable(porcinos) {
       const tableBody = porcinosTable.querySelector('tbody');
-      tbody.innerHTML = ''; // Clear existing data
+      
 
       porcinos.forEach(porcino => {
         const tableRow = document.createElement('tr');
         const identificacionCell = document.createElement('td');
         const clienteIdCell = document.createElement('td');
+        const alimentacionCell = document.createElement('td');
+        const edadCell = document.createElement('td');
+        const razaCell = document.createElement('td');
+        const pesoCell = document.createElement('td');
+
 
         identificacionCell.textContent = porcino.identificacion;
-        clienteIdCell.textContent = porcino.cliente;
+        clienteIdCell.textContent = porcino.Cliente;
+        alimentacionCell.textContent = porcino.Alimentacion.Descripcion;
+        edadCell.textContent = porcino.Edad;
+        razaCell.textContent = porcino.Raza;
+        pesoCell.textContent = porcino.Peso + ' kg';
+
 
         tableRow.appendChild(identificacionCell);
         tableRow.appendChild(clienteIdCell);
+        tableRow.appendChild(alimentacionCell);
+        tableRow.appendChild(edadCell);
+        tableRow.appendChild(razaCell);
+        tableRow.appendChild(pesoCell);
 
-        tbody.appendChild(tableRow);
+        tableBody.appendChild(tableRow);
       });
     }
   </script>

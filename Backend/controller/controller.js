@@ -127,4 +127,55 @@ function deleteCliente(req, res) {
         });
 }
 
-module.exports = { createPorcino, getPorcinos, getPorcino, updatePorcino, deletePorcino, getClientes, getCliente, createCliente, updateCliente, deleteCliente };
+function porcinoView(req, res) {
+    res.render('porcinos');
+}
+
+function getPorcinoNew(req, res) {
+    res.render('porcino_new');
+}
+
+function getClienteNew(req, res) {
+    res.render('cliente_new');
+}
+
+function getPorcinoEdit(req, res) {
+    res.render('porcino_update');
+}
+
+function getClienteEdit(req, res) {
+    res.render('cliente_update');
+}
+
+function getPorcinoDelete(req, res) {
+    res.render('porcino_delete');
+}
+
+function getClienteDelete(req, res) {
+    res.render('cliente_delete');
+}
+
+function clienteView(req, res) {
+    res.render('cliente');
+}
+
+module.exports = { 
+    createPorcino, 
+    getPorcinos, 
+    getPorcino, 
+    updatePorcino, 
+    deletePorcino, 
+    getClientes, 
+    getCliente, 
+    createCliente, 
+    updateCliente, 
+    deleteCliente,
+    getPorcinoNew,
+    getClienteNew,
+    getPorcinoEdit,
+    getClienteEdit,
+    getPorcinoDelete,
+    getClienteDelete,
+    porcinoView,
+    clienteView
+};
