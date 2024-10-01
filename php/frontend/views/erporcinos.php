@@ -1,6 +1,6 @@
 <?php
   $controller = new Controller();
-  $data = $controller->getPorcinoInfo();
+  $data = $controller->getPorcinosInfo();
   $clientData = $controller->getClientInfo();
 
   if ($_SERVER['REQUEST_METHOD'] == 'POST') {

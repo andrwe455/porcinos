@@ -1,7 +1,7 @@
 <?php
   // Obtener la información del cliente desde el controlador
   $controller = new Controller();
-  $cliente = $controller->getClienteById($_GET['id']); // Obtener un cliente por su ID
+  $cliente = $controller->getClientById($_GET['id']); // Obtener un cliente por su ID
 ?>
 
 <!DOCTYPE html>

@@ -91,11 +91,11 @@
     public function deletePorcino($id) {
     $client = Mongo::connect();
     $collection = $client->porcinos->porcinos;
-    
+
     // Buscar y eliminar el porcino por su identificador
     $collection->deleteOne(['_id' => new MongoDB\BSON\ObjectId($id)]);
 
-    
+
     // header('Location: /porcinos');
 }
 
@@ -146,11 +146,11 @@ public function updatePorcino($id, $nombre, $raza, $edad, $peso) {
 public function getClientById($id) {
     $client = Mongo::connect();
     $collection = $client->porcinos->clientes;
-    
-    // Obtener el cliente por su ID
-    $cliente = $collection->findOne(['_id' => new MongoDB\BSON\ObjectId($id)]);
 
-    return $cliente;
+    // Obtener el cliente por su ID
+    $client = $collection->findOne(['_id' => new MongoDB\BSON\ObjectId($id)]);
+
+    return $client;
 }
 
 // Actualizar cliente
