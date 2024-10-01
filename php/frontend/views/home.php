@@ -223,13 +223,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
           <li class="nav-item">
-            <a href="/cliente" class="nav-link">
+            <a href="/addCliente" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>Crear Cliente</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="/addCliente" class="nav-link">
+            <a href="" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>Actualizar Cliente</p>
             </a>
@@ -243,7 +243,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="/cliente" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Ver Cliente

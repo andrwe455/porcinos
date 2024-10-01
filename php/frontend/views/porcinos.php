@@ -117,7 +117,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link active">
+            <a href="/addCliente" class="nav-link active">
               <i class="far fa-circle nav-icon"></i>
               <p>Actualizar Cliente</p>
             </a>
@@ -131,7 +131,7 @@
             
           
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="/cliente" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Ver Cliente
