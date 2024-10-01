@@ -12,6 +12,7 @@
   $router->add('GET', '/cliente', 'Controller', 'getClientPage');
   $router->add('GET', '/porcinos/info', 'Controller', 'getPorcinosInfo');
   $router->add('GET', '/addPorcinos', 'Controller', 'addPorcinosPage');
+  $router->add('GET', '/addCliente', 'Controller', 'addClientPage');
   $router->add('POST', '/porcinos', 'Controller', 'setPorcinosInfo');
   
 

@@ -1,7 +1,7 @@
 <?php
 
   $controller = new Controller();
-  $data = $controller->getPorcinosInfo();
+  $data = $controller->getClientInfo();
 
 ?>
 <!DOCTYPE html>

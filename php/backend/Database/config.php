@@ -1,6 +1,5 @@
 <?php
 
-  use Exception;
   use MongoDB\Client;
   use MongoDB\Driver\ServerApi;
   use MondoDB\Database;

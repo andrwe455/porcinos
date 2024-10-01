@@ -11,7 +11,11 @@
     }
 
     public function getClientPage() {
-      include_once 'frontend/views/client.php';
+      include_once 'frontend/views/clientes.php';
+    }
+
+    public function addClientPage() {
+      include_once 'frontend/views/insertCliente.php';
     }
 
     public function addPorcinosPage() {
