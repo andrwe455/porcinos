@@ -21,6 +21,12 @@
     public function addPorcinosPage() {
       include_once 'frontend/views/insertPorcinos.php';
     }
+    public function upPorcinosPage() {
+      include_once 'frontend/views/updatePorcinos.php';
+    }
+    public function upClientePage() {
+      include_once 'frontend/views/updateCliente.php';
+    }
 
     public function erPorcinosPage() {
       include_once 'frontend/views/ercliente.php';
@@ -69,7 +75,7 @@
     }
     public function setclienteInfo() {
       $client = Mongo::connect();
-      $collection = $client->porcinos->client;
+      $collection = $client->porcinos->clientes;
       echo json_encode($_POST);
       $data = [
         'identificacion' => $_POST['identificacion'],
@@ -81,5 +87,131 @@
 
       //header('Location: /porcinos');
     }
+
+    public function deletePorcino($id) {
+    $client = Mongo::connect();
+    $collection = $client->porcinos->porcinos;
+    
+    // Buscar y eliminar el porcino por su identificador
+    $collection->deleteOne(['_id' => new MongoDB\BSON\ObjectId($id)]);
+
+    
+    // header('Location: /porcinos');
+}
+
+public function deleteCliente($id) {
+    $client = Mongo::connect();
+    $collection = $client->porcinos->clientes;
+
+    // Eliminar el cliente por su ID
+    $collection->deleteOne(['_id' => new MongoDB\BSON\ObjectId($id)]);
+
+    // Redirigir después de eliminar
+    header("Location: /clientes?status=deleted");
+}
+
+
+public function getPorcinoById($id) {
+    // Conectar a MongoDB
+    $client = Mongo::connect();
+    $collection = $client->porcinos->porcinos;
+
+    // Obtener el porcino por su ID
+    $porcino = $collection->findOne(['_id' => new MongoDB\BSON\ObjectId($id)]);
+
+    return $porcino;
+}
+
+public function updatePorcino($id, $nombre, $raza, $edad, $peso) {
+    // Conectar a MongoDB
+    $client = Mongo::connect();
+    $collection = $client->porcinos->porcinos;
+
+    // Actualizar el porcino
+    $result = $collection->updateOne(
+        ['_id' => new MongoDB\BSON\ObjectId($id)],
+        ['$set' => [
+            'nombre' => $nombre,
+            'raza' => $raza,
+            'edad' => $edad,
+            'peso' => $peso
+        ]]
+    );
+
+    // Comprobar si la actualización fue exitosa
+    return $result->getModifiedCount() > 0;
+}
+
+// Obtener cliente por ID
+public function getClientById($id) {
+    $client = Mongo::connect();
+    $collection = $client->porcinos->clientes;
+    
+    // Obtener el cliente por su ID
+    $cliente = $collection->findOne(['_id' => new MongoDB\BSON\ObjectId($id)]);
+
+    return $cliente;
+}
+
+// Actualizar cliente
+public function updateClient($id, $nombre, $edad, $identificacion) {
+    $client = Mongo::connect();
+    $collection = $client->porcinos->clientes;
+
+    // Actualizar el cliente
+    $result = $collection->updateOne(
+        ['_id' => new MongoDB\BSON\ObjectId($id)],
+        ['$set' => [
+            'Nombre' => $nombre,
+            'Edad' => $edad,
+            'identificacion' => $identificacion
+        ]]
+    );
+
+    return $result->getModifiedCount() > 0;
+}
+public function handleUpdateRequest() {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        // Obtener los datos enviados por el formulario
+        $id = $_POST['id'];
+        $nombre = $_POST['nombre'];
+        $raza = $_POST['raza'];
+        $edad = $_POST['edad'];
+        $peso = $_POST['peso'];
+
+        // Llamar a la función updatePorcino para actualizar el porcino
+        $success = $this->updatePorcino($id, $nombre, $raza, $edad, $peso);
+
+        // Redirigir según el resultado de la actualización
+        if ($success) {
+            header("Location: /porcinos?status=success");
+        } else {
+            header("Location: /porcinos?status=error");
+        }
+    }
+}
+public function handleClientUpdateRequest() {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        // Obtener los datos enviados por el formulario
+        $id = $_POST['id'];
+        $nombre = $_POST['nombre'];
+        $edad = $_POST['edad'];
+        $identificacion = $_POST['identificacion'];
+
+        // Llamar a la función updateClient para actualizar el cliente
+        $success = $this->updateClient($id, $nombre, $edad, $identificacion);
+
+        // Redirigir según el resultado de la actualización
+        if ($success) {
+            header("Location: /clientes?status=success");
+        } else {
+            header("Location: /clientes?status=error");
+        }
+    }
+}
+
+
+
+
 
   }

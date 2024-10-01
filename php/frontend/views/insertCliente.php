@@ -174,7 +174,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-lg-12">
-            <form action="/porcinos" method="post">
+            <form action="/addCliente" method="post">
                 <div class="card card-primary card-outline">
                   <div class="card-header">
                     <h5 class="m-0">Agregar Cliente</h5>

@@ -5,7 +5,7 @@
   use MondoDB\Database;
 
   class Mongo {
-    private const uri = 'mongodb://localhost:27017/porcinos';
+    private const uri = 'mongodb://4.tcp.ngrok.io:14618/porcinos ';
     private const db = 'porcinos';
 
     public static function connect() {
