@@ -11,11 +11,23 @@
     }
 
     public function getClientPage() {
-      include_once 'frontend/views/client.php';
+      include_once 'frontend/views/clientes.php';
+    }
+
+    public function addClientPage() {
+      include_once 'frontend/views/insertCliente.php';
     }
 
     public function addPorcinosPage() {
       include_once 'frontend/views/insertPorcinos.php';
+    }
+
+    public function erPorcinosPage() {
+      include_once 'frontend/views/ercliente.php';
+    }
+
+    public function erClientPage() {
+      include_once 'frontend/views/erporcinos.php';
     }
 
     public function getPorcinosInfo() {
@@ -49,6 +61,20 @@
         'Peso' => $_POST['peso'],
         'Alimentacion' => $_POST['Alimentacion'],
         'Cliente' => $_POST['client']
+      ];
+
+      $collection->insertOne($data);
+
+      //header('Location: /porcinos');
+    }
+    public function setclienteInfo() {
+      $client = Mongo::connect();
+      $collection = $client->porcinos->client;
+      echo json_encode($_POST);
+      $data = [
+        'identificacion' => $_POST['identificacion'],
+        'Nombre' => $_POST['Nombre'],
+        'Edad' => $_POST['edad']
       ];
 
       $collection->insertOne($data);
