@@ -1,9 +1,7 @@
 <?php
 
   $controller = new Controller();
-  $data = $controller->getClientInfo();
-
-
+  $data = $controller->getPorcinosInfo();
 
 ?>
 <!DOCTYPE html>
@@ -82,7 +80,7 @@
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
-      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item menu-open">
@@ -173,54 +171,52 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-lg-12">
-            <form action="/porcinos" method="post">
-                <div class="card card-primary card-outline">
-                  <div class="card-header">
-                    <h5 class="m-0">Agregar Porcino</h5>
-                  </div>
-                  <div class="card-body row">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label for="">Identificación</label>
-                        <input type="text" class="form-control" name="identificacion" id="identificacion">
+            <div class="card card-primary card-outline">
+                <div class="card-header">
+                  <h3 class="card-title">Clientes</h3>
+                </div>
+                <div class="card-body">
+                  <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                      <div class="row">
+                          <div class="col-sm-12">
+                              <table id="example1" class="table table-bordered table-striped dataTable dtr-inline" aria-describedby="example1_info">
+                                  <thead>
+                                      <tr>
+                                          <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Nombre: activate to sort column ascending">
+                                              id cliente
+                                          </th>
+                                          <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="QR: activate to sort column ascending">
+                                            Nombre
+                                          </th>
+                                          <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="QR: activate to sort column ascending">
+                                          Edad
+                                          </th>
+                                      </tr>
+                                  </thead>
+                                  <tbody class="text-center">
+                                      <?php 
+                                        foreach ($data as $cliente) {
+                                          echo "<tr>";
+                                          echo "<td>".$cliente['identificacion']."</td>";
+                                          echo "<td>".$cliente['Nombre']."</td>";
+                                          echo "<td>".$cliente['Edad']."</td>";
+                                          echo "</tr>";
+                                        }
+                                      ?>  
+                                  </tbody>
+                                  <tfoot>
+                                      <tr>
+                                          <th rowspan="1" colspan="1">id Cliente</th>
+                                          <th rowspan="1" colspan="1">Nombre</th>
+                                          <th rowspan="1" colspan="1">Edad</th>
+                                      </tr>
+                                  </tfoot>
+                              </table>
+                          </div>
                       </div>
-                      <div class="form-group row">
-                        <div class="col-md-4">
-                          <label for="">Raza</label>
-                          <input type="text" class="form-control" name="Raza" id="Raza">
-                        </div>
-                        <div class="col-md-4">
-                          <label for="">Edad</label>
-                          <input type="text" class="form-control" name="edad" id="edad">
-                        </div>
-                        <div class="col-md-4">
-                          <label for="">Peso</label>
-                          <input type="text" class="form-control" name="peso" id="peso">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label for="">Alimentación</label>
-                        <input type="text" class="form-control mb-3" name="Alimentacion[Descripcion]" placeholder="Descripcion">
-                        <input type="text" class="form-control" name="Alimentacion[dosis]" placeholder="dosis">
-                      </div>
-                      <div class="form-group">
-                        <label for="">Cliente</label>
-                        <select name="client" id="client" class="form-control" value ="hola">
-                          <option value="hola">Selecciona un cliente</option>
-                          <?php
-                            foreach ($clientData as $client) {
-                              echo "<option value='".$client['_id']."'>".$client['name']."</option>";
-                            }
-                          ?>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card-footer">
-                    <input type="submit" class="btn btn-success" value="Agregar porcino">
                   </div>
                 </div>
-             </form>
+            </div>
           </div>
         </div>
         <!-- /.row -->
@@ -231,6 +227,13 @@
   <!-- /.content-wrapper -->
 
   <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+    <div class="p-3">
+      <h5>Title</h5>
+      <p>Sidebar content</p>
+    </div>
+  </aside>
   <!-- /.control-sidebar -->
 
   <!-- Main Footer -->

@@ -1,9 +1,10 @@
 <?php
 
   $controller = new Controller();
-  $data = $controller->getClientInfo();
+  $data = $controller->getPorcinosInfo();
 
-
+  $clientData = $controller->getClientInfo();
+  
 
 ?>
 <!DOCTYPE html>
@@ -176,7 +177,7 @@
             <form action="/porcinos" method="post">
                 <div class="card card-primary card-outline">
                   <div class="card-header">
-                    <h5 class="m-0">Agregar Porcino</h5>
+                    <h5 class="m-0">Agregar Cliente</h5>
                   </div>
                   <div class="card-body row">
                     <div class="col-md-12">
@@ -186,38 +187,18 @@
                       </div>
                       <div class="form-group row">
                         <div class="col-md-4">
-                          <label for="">Raza</label>
-                          <input type="text" class="form-control" name="Raza" id="Raza">
+                          <label for="">Nombre</label>
+                          <input type="text" class="form-control" name="nombre" id="nombre">
                         </div>
                         <div class="col-md-4">
                           <label for="">Edad</label>
                           <input type="text" class="form-control" name="edad" id="edad">
                         </div>
-                        <div class="col-md-4">
-                          <label for="">Peso</label>
-                          <input type="text" class="form-control" name="peso" id="peso">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label for="">Alimentación</label>
-                        <input type="text" class="form-control mb-3" name="Alimentacion[Descripcion]" placeholder="Descripcion">
-                        <input type="text" class="form-control" name="Alimentacion[dosis]" placeholder="dosis">
-                      </div>
-                      <div class="form-group">
-                        <label for="">Cliente</label>
-                        <select name="client" id="client" class="form-control" value ="hola">
-                          <option value="hola">Selecciona un cliente</option>
-                          <?php
-                            foreach ($clientData as $client) {
-                              echo "<option value='".$client['_id']."'>".$client['name']."</option>";
-                            }
-                          ?>
-                        </select>
                       </div>
                     </div>
                   </div>
                   <div class="card-footer">
-                    <input type="submit" class="btn btn-success" value="Agregar porcino">
+                    <input type="submit" class="btn btn-success" value="Agregar Cliente">
                   </div>
                 </div>
              </form>
