@@ -205,13 +205,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
             
           <li class="nav-item">
-            <a href="updatePorcinos" class="nav-link">
+            <a href="/updatePorcinos" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>Actualizar Porcino</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="erporcinos" class="nav-link">
+            <a href="/erporcinos" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>Eliminar Porcino</p>
             </a>
@@ -229,13 +229,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
           <li class="nav-item">
-            <a href="updateCliente" class="nav-link">
+            <a href="/updateCliente" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>Actualizar Cliente</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="ercliente" class="nav-link">
+            <a href="/ercliente" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>Eliminar Cliente</p>
             </a>
@@ -261,19 +261,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <ul class="nav-treeview">
               <li class="nav-item">
-                <a href="/insertPorcinos" class="nav-link">
+                <a href="/graphQlPorcinos" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Crear Porcino</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="updatePorcinos" class="nav-link">
+                <a href="/updatePorcinos" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Actualizar Porcino</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="erporcinos" class="nav-link">
+                <a href="/erporcinos" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Eliminar Porcino</p>
                 </a>
