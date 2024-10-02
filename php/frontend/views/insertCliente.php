@@ -4,7 +4,6 @@
   $data = $controller->getPorcinosInfo();
 
   $clientData = $controller->getClientInfo();
-  
 
 ?>
 <!DOCTYPE html>
@@ -196,7 +195,10 @@
                     </div>
                   </div>
                   <div class="card-footer">
+                    <!-- Botón para el método tradicional -->
                     <input type="submit" class="btn btn-success" value="Agregar Cliente">
+                    <!-- Botón para insertar cliente usando GraphQL -->
+                    <button type="button" class="btn btn-primary" onclick="addClienteGraphQL()">Agregar Cliente (GraphQL)</button>
                   </div>
                 </div>
              </form>
@@ -238,10 +240,45 @@
 <script src="../Frontend/js/plugins/buttons.bootstrap4.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../Frontend/js/plugins/adminlte.min.js"></script>
+
+<!-- Función para insertar cliente usando GraphQL -->
 <script>
-$("#example1").DataTable({
-    "responsive": true, "lengthChange": false, "autoWidth": false
-}).buttons().container().appendTo("#example1_wrapper .col-md-6:eq(0)");
+function addClienteGraphQL() {
+  const identificacion = document.getElementById('identificacion').value;
+  const nombre = document.getElementById('nombre').value;
+  const edad = document.getElementById('edad').value;
+
+  const query = `
+    mutation {
+      insertCliente(identificacion: "${identificacion}", nombre: "${nombre}", edad: ${edad}) {
+        identificacion
+        nombre
+        edad
+      }
+    }
+  `;
+
+  fetch('/graphql', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ query }),
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.errors) {
+      alert('Error al agregar cliente');
+    } else {
+      alert('Cliente agregado exitosamente usando GraphQL');
+    }
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    alert('Error al agregar cliente');
+  });
+}
 </script>
+
 </body>
 </html>

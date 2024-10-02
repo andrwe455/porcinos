@@ -1,7 +1,7 @@
 <?php
 
   $controller = new Controller();
-  $data = $controller->getClientInfo();
+  $data = $controller->getClientInfo(); // Obtener información de clientes
 
 ?>
 <!DOCTYPE html>
@@ -9,7 +9,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Perfil</title>
+  <title>Clientes</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -79,36 +79,7 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          <li class="nav-item">
-            <a href="/addPorcinos" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                  Crear Porcino
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-          </li>
-            
-          <li class="nav-item">
-            <a href="updatePorcinos" class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
-              <p>Actualizar Porcino</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="erporcinos" class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
-              <p>Eliminar Porcino</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="/porcinos" class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
-              <p>Ver Porcino</p>
-            </a>
-          </li>
+          <!-- Cliente Section -->
           <li class="nav-item">
             <a href="/addCliente" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
@@ -116,26 +87,21 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="updateCliente" class="nav-link">
+            <a href="/updateCliente" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>Actualizar Cliente</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="ercliente" class="nav-link">
+            <a href="/ercliente" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>Eliminar Cliente</p>
             </a>
           </li>
-            
-          </li>
           <li class="nav-item">
             <a href="/cliente" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
-              <p>
-                Ver Cliente
-                <span class="right badge badge-danger">New</span>
-              </p>
+              <p>Ver Cliente</p>
             </a>
           </li>
         </ul>
@@ -152,12 +118,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Starter Page</h1>
+            <h1 class="m-0">Clientes</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Starter Page</li>
+              <li class="breadcrumb-item active">Clientes</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -172,7 +138,7 @@
           <div class="col-lg-12">
             <div class="card card-primary card-outline">
                 <div class="card-header">
-                  <h3 class="card-title">Clientes</h3>
+                  <h3 class="card-title">Listado de Clientes</h3>
                 </div>
                 <div class="card-body">
                   <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
@@ -181,15 +147,9 @@
                               <table id="example1" class="table table-bordered table-striped dataTable dtr-inline" aria-describedby="example1_info">
                                   <thead>
                                       <tr>
-                                          <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Nombre: activate to sort column ascending">
-                                              id cliente
-                                          </th>
-                                          <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="QR: activate to sort column ascending">
-                                            Nombre
-                                          </th>
-                                          <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="QR: activate to sort column ascending">
-                                          Edad
-                                          </th>
+                                          <th>ID Cliente</th>
+                                          <th>Nombre</th>
+                                          <th>Edad</th>
                                       </tr>
                                   </thead>
                                   <tbody class="text-center">
@@ -205,9 +165,9 @@
                                   </tbody>
                                   <tfoot>
                                       <tr>
-                                          <th rowspan="1" colspan="1">id Cliente</th>
-                                          <th rowspan="1" colspan="1">Nombre</th>
-                                          <th rowspan="1" colspan="1">Edad</th>
+                                          <th>ID Cliente</th>
+                                          <th>Nombre</th>
+                                          <th>Edad</th>
                                       </tr>
                                   </tfoot>
                               </table>
@@ -225,24 +185,12 @@
   </div>
   <!-- /.content-wrapper -->
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-    <div class="p-3">
-      <h5>Title</h5>
-      <p>Sidebar content</p>
-    </div>
-  </aside>
-  <!-- /.control-sidebar -->
-
   <!-- Main Footer -->
   <footer class="main-footer">
-    <!-- To the right -->
     <div class="float-right d-none d-sm-inline">
       Anything you want
     </div>
-    <!-- Default to the left -->
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2024 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
   </footer>
 </div>
 <!-- ./wrapper -->
@@ -253,7 +201,7 @@
 <script src="../Frontend/js/plugins/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="../Frontend/js/plugins/bootstrap.bundle.min.js"></script>
-<!-- DataTables  & Plugins -->
+<!-- DataTables & Plugins -->
 <script src="../Frontend/js/plugins/jquery.dataTables.min.js"></script>
 <script src="../Frontend/js/plugins/dataTables.bootstrap4.min.js"></script>
 <script src="../Frontend/js/plugins/dataTables.responsive.min.js"></script>

@@ -294,5 +294,61 @@ $("#example1").DataTable({
   "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
 }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 </script>
+<script>
+    document.getElementById('graphqlBtn').addEventListener('click', function() {
+        const query = `
+            query {
+                getPorcinos {
+                    identificacion
+                    Raza
+                    Edad
+                    Peso
+                    Cliente
+                    Alimentacion {
+                        Descripcion
+                        dosis
+                    }
+                }
+            }
+        `;
+
+        // Hacer la solicitud GraphQL al servidor
+        fetch('/graphql', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
+            body: JSON.stringify({
+                query: query
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            const porcinos = data.data.getPorcinos;
+            let tbody = document.querySelector("#example1 tbody");
+            tbody.innerHTML = ""; // Limpiar la tabla
+
+            porcinos.forEach(porcino => {
+                let row = `
+                    <tr>
+                        <td>${porcino.identificacion}</td>
+                        <td>${porcino.Raza}</td>
+                        <td>${porcino.Edad}</td>
+                        <td>${porcino.Peso}</td>
+                        <td>${porcino.Cliente}</td>
+                        <td>${porcino.Alimentacion.Descripcion}</td>
+                        <td>${porcino.Alimentacion.dosis}</td>
+                    </tr>
+                `;
+                tbody.innerHTML += row;
+            });
+        })
+        .catch(error => {
+            console.error('Error al obtener datos con GraphQL:', error);
+        });
+    });
+</script>
+
 </body>
 </html>

@@ -45,7 +45,6 @@
 
     <!-- Sidebar -->
     <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
           <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
@@ -55,7 +54,6 @@
         </div>
       </div>
 
-      <!-- SidebarSearch Form -->
       <div class="form-inline">
         <div class="input-group" data-widget="sidebar-search">
           <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
@@ -67,21 +65,14 @@
         </div>
       </div>
 
-      <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
           <li class="nav-item">
             <a href="/addPorcinos" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                  Crear Porcino
-                <i class="right fas fa-angle-left"></i>
-              </p>
+              <p>Crear Porcino</p>
             </a>
           </li>
-            
           <li class="nav-item">
             <a href="updatePorcinos" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
@@ -118,27 +109,19 @@
               <p>Eliminar Cliente</p>
             </a>
           </li>
-            
-          </li>
           <li class="nav-item">
             <a href="/cliente" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
-              <p>
-                Ver Cliente
-                <span class="right badge badge-danger">New</span>
-              </p>
+              <p>Ver Cliente</p>
             </a>
           </li>
         </ul>
       </nav>
-      <!-- /.sidebar-menu -->
     </div>
-    <!-- /.sidebar -->
   </aside>
 
   <!-- Content Wrapper -->
   <div class="content-wrapper">
-    <!-- Content Header -->
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
@@ -154,14 +137,12 @@
         </div>
       </div>
     </div>
-    <!-- /.content-header -->
 
-    <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
         <div class="row">
           <div class="col-lg-12">
-            <form action="/updatePorcino" method="post">
+            <form action="/updatePorcino" method="post" id="updateForm">
               <div class="card card-primary card-outline">
                 <div class="card-header">
                   <h5 class="m-0">Editar Información del Porcino</h5>
@@ -193,28 +174,63 @@
                 </div>
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary">Actualizar Porcino</button>
+                  <button type="button" class="btn btn-secondary" id="updateGraphQLBtn">Actualizar con GraphQL</button>
                 </div>
               </div>
             </form>
           </div>
         </div>
-        <!-- /.row -->
-      </div><!-- /.container-fluid -->
+      </div>
     </div>
-    <!-- /.content -->
   </div>
-  <!-- /.content-wrapper -->
 
   <!-- Main Footer -->
   <footer class="main-footer">
     <strong>Copyright &copy; 2021 <a href="#">Your Company</a>.</strong> All rights reserved.
   </footer>
 </div>
-<!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
 <script src="../Frontend/js/plugins/jquery.min.js"></script>
 <script src="../Frontend/js/plugins/bootstrap.bundle.min.js"></script>
 <script src="../Frontend/js/plugins/adminlte.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $("#updateGraphQLBtn").click(function() {
+      const id = $("input[name='id']").val();
+      const nombre = $("input[name='nombre']").val();
+      const raza = $("input[name='raza']").val();
+      const edad = $("input[name='edad']").val();
+      const peso = $("input[name='peso']").val();
+
+      const query = `
+        mutation {
+          updatePorcino(id: "${id}", nombre: "${nombre}", raza: "${raza}", edad: ${edad}, peso: ${peso}) {
+            id
+            nombre
+            raza
+            edad
+            peso
+          }
+        }
+      `;
+
+      $.ajax({
+        url: 'http://tu-url-de-graphql', // Cambia esto por tu URL de GraphQL
+        method: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({ query }),
+        success: function(response) {
+          alert('Porcino actualizado con éxito.');
+          console.log(response);
+        },
+        error: function(xhr, status, error) {
+          alert('Error al actualizar el porcino: ' + error);
+          console.error(xhr);
+        }
+      });
+    });
+  });
+</script>
 </body>
 </html>

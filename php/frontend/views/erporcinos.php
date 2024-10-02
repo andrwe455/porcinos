@@ -1,7 +1,6 @@
 <?php
   $controller = new Controller();
   $data = $controller->getPorcinosInfo();
-  $clientData = $controller->getClientInfo();
 
   if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $id = $_POST['identificacion'];
@@ -78,7 +77,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link active">
+            <a href="/erporcinos" class="nav-link active">
               <i class="nav-icon fas fa-trash"></i>
               <p>Eliminar Porcino</p>
             </a>
@@ -118,7 +117,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-lg-12">
-            <form action="/deletePorcino" method="post">
+            <form action="/erporcinos" method="post">
               <div class="card card-danger card-outline">
                 <div class="card-header">
                   <h5 class="m-0">Eliminar Porcino</h5>
@@ -162,7 +161,7 @@
 <script src="../Frontend/js/plugins/jquery.min.js"></script>
 <script src="../Frontend/js/plugins/bootstrap.bundle.min.js"></script>
 <script src="../Frontend/js/plugins/jquery.dataTables.min.js"></script>
-<script src="../Frontend/js/plugins/dataTables.bootstrap4.min.js"></script>
 <script src="../Frontend/js/plugins/adminlte.min.js"></script>
 </body>
 </html>
+
