@@ -209,6 +209,68 @@ public function handleClientUpdateRequest() {
         }
     }
 }
+// Resolver para obtener todos los porcinos (GraphQL Query)
+public function resolveGetPorcinos() {
+        return $this->getPorcinosInfo();
+    }
+
+    // Resolver para obtener todos los clientes (GraphQL Query)
+    public function resolveGetClientes() {
+        return $this->getClientInfo();
+    }
+
+    // Resolver para obtener un porcino por ID (GraphQL Query)
+    public function resolveGetPorcinoById($root, $args) {
+        return $this->getPorcinoById($args['id']);
+    }
+
+    // Resolver para obtener un cliente por ID (GraphQL Query)
+    public function resolveGetClienteById($root, $args) {
+        return $this->getClientById($args['id']);
+    }
+
+    // Resolver para crear un nuevo porcino (GraphQL Mutation)
+    public function resolveCreatePorcino($root, $args) {
+        $data = [
+            'identificacion' => $args['identificacion'],
+            'Raza' => $args['Raza'],
+            'Edad' => $args['Edad'],
+            'Peso' => $args['Peso'],
+            'Alimentacion' => $args['Alimentacion'],
+            'Cliente' => $args['Cliente']
+        ];
+        return $this->setPorcinosInfo($data);
+    }
+
+    // Resolver para crear un nuevo cliente (GraphQL Mutation)
+    public function resolveCreateCliente($root, $args) {
+        $data = [
+            'identificacion' => $args['identificacion'],
+            'Nombre' => $args['Nombre'],
+            'Edad' => $args['Edad']
+        ];
+        return $this->setClienteInfo($data);
+    }
+
+    // Resolver para actualizar un porcino (GraphQL Mutation)
+    public function resolveUpdatePorcino($root, $args) {
+        return $this->updatePorcino($args['id'], $args['nombre'], $args['raza'], $args['edad'], $args['peso']);
+    }
+
+    // Resolver para actualizar un cliente (GraphQL Mutation)
+    public function resolveUpdateCliente($root, $args) {
+        return $this->updateClient($args['id'], $args['nombre'], $args['edad'], $args['identificacion']);
+    }
+
+    // Resolver para eliminar un porcino (GraphQL Mutation)
+    public function resolveDeletePorcino($root, $args) {
+        return $this->deletePorcino($args['id']);
+    }
+
+    // Resolver para eliminar un cliente (GraphQL Mutation)
+    public function resolveDeleteCliente($root, $args) {
+        return $this->deleteCliente($args['id']);
+    }
 
 
 
