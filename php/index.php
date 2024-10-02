@@ -13,7 +13,7 @@
   $router->add('GET', '/porcinos/info', 'Controller', 'getPorcinosInfo');
   $router->add('GET', '/addPorcinos', 'Controller', 'addPorcinosPage');
   $router->add('GET', '/addCliente', 'Controller', 'addClientPage');
-  $router->add('GET', '/ercliente', 'Controller', 'erClientePage');
+  $router->add('GET', '/ercliente', 'Controller', 'erClientPage');
   $router->add('GET', '/erporcinos', 'Controller', 'erPorcinosPage');
   $router->add('GET', '/updatePorcinos', 'Controller', 'upPorcinosPage');
   $router->add('GET', '/updateCliente', 'Controller', 'upClientePage');

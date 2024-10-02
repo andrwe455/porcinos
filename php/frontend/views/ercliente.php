@@ -82,7 +82,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/clientes" class="nav-link">
+            <a href="/cliente" class="nav-link">
               <i class="nav-icon fas fa-eye"></i>
               <p>Ver Cliente</p>
             </a>

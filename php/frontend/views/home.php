@@ -195,7 +195,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="/insertPorcinos" class="nav-link">
+            <a href="/addPorcinos" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                   Crear Porcino
@@ -223,7 +223,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
           <li class="nav-item">
-            <a href="/inserCliente" class="nav-link">
+            <a href="/addCliente" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>Crear Cliente</p>
             </a>

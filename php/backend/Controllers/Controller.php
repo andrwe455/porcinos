@@ -29,11 +29,11 @@
     }
 
     public function erPorcinosPage() {
-      include_once 'frontend/views/ercliente.php';
+      include_once 'frontend/views/erporcinos.php';
     }
 
     public function erClientPage() {
-      include_once 'frontend/views/erporcinos.php';
+      include_once 'frontend/views/ercliente.php';
     }
 
     public function getPorcinosInfo() {
@@ -271,9 +271,4 @@ public function resolveGetPorcinos() {
     public function resolveDeleteCliente($root, $args) {
         return $this->deleteCliente($args['id']);
     }
-
-
-
-
-
   }
