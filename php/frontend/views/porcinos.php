@@ -9,7 +9,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Perfil</title>
+  <title>Porcinos</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -270,21 +270,29 @@
 <!-- REQUIRED SCRIPTS -->
 
 <!-- jQuery -->
-<script src="../Frontend/js/plugins/jquery.min.js"></script>
+<script src="frontend/js/plugins/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="../Frontend/js/plugins/bootstrap.bundle.min.js"></script>
+<script src="frontend/js/plugins/bootstrap.bundle.min.js"></script>
 <!-- DataTables  & Plugins -->
-<script src="../Frontend/js/plugins/jquery.dataTables.min.js"></script>
-<script src="../Frontend/js/plugins/dataTables.bootstrap4.min.js"></script>
-<script src="../Frontend/js/plugins/dataTables.responsive.min.js"></script>
-<script src="../Frontend/js/plugins/dataTables.buttons.min.js"></script>
-<script src="../Frontend/js/plugins/buttons.bootstrap4.min.js"></script>
+<script src="frontend/js/plugins/jquery.dataTables.min.js"></script>
+<script src="frontend/js/plugins/dataTables.bootstrap4.min.js"></script>
+<script src="frontend/js/plugins/dataTables.responsive.min.js"></script>
+<script src="frontend/js/plugins/dataTables.buttons.min.js"></script>
+<script src="frontend/js/plugins/buttons.bootstrap4.min.js"></script>
 <!-- AdminLTE App -->
-<script src="../Frontend/js/plugins/adminlte.min.js"></script>
+<script src="frontend/js/plugins/adminlte.min.js"></script>
+<script src="frontend/js/plugins/jszip.min.js"></script>
+<script src="frontend/js/plugins/pdfmake.min.js"></script>
+<script src="frontend/js/plugins/vfs_fonts.js"></script>
+<script src="frontend/js/plugins/buttons.html5.min.js"></script>
+<script src="frontend/js/plugins/buttons.print.min.js"></script>
+<script src="frontend/js/plugins/buttons.colVis.min.js"></script>
+
 <script>
 $("#example1").DataTable({
-    "responsive": true, "lengthChange": false, "autoWidth": false
-}).buttons().container().appendTo("#example1_wrapper .col-md-6:eq(0)");
+  "responsive": true, "lengthChange": false, "autoWidth": false,
+  "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 </script>
 </body>
 </html>
