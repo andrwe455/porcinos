@@ -79,7 +79,36 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Cliente Section -->
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item">
+            <a href="/addPorcinos" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                  Crear Porcino
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+          </li>
+            
+          <li class="nav-item">
+            <a href="updatePorcinos" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Actualizar Porcino</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="erporcinos" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Eliminar Porcino</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/porcinos" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Ver Porcino</p>
+            </a>
+          </li>
           <li class="nav-item">
             <a href="/addCliente" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
@@ -87,21 +116,26 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/updateCliente" class="nav-link">
+            <a href="updateCliente" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>Actualizar Cliente</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="/ercliente" class="nav-link">
+            <a href="ercliente" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>Eliminar Cliente</p>
             </a>
           </li>
+            
+          </li>
           <li class="nav-item">
             <a href="/cliente" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
-              <p>Ver Cliente</p>
+              <p>
+                Ver Cliente
+                <span class="right badge badge-danger">New</span>
+              </p>
             </a>
           </li>
         </ul>
@@ -150,6 +184,7 @@
                                           <th>ID Cliente</th>
                                           <th>Nombre</th>
                                           <th>Edad</th>
+                                          <th>Actualizar</th>
                                       </tr>
                                   </thead>
                                   <tbody class="text-center">
@@ -159,6 +194,7 @@
                                           echo "<td>".$cliente['identificacion']."</td>";
                                           echo "<td>".$cliente['Nombre']."</td>";
                                           echo "<td>".$cliente['Edad']."</td>";
+                                          echo "<td><a href='/updateCliente?id=".$cliente['_id']."'>Actualizar</a></td>";
                                           echo "</tr>";
                                         }
                                       ?>  
@@ -168,6 +204,7 @@
                                           <th>ID Cliente</th>
                                           <th>Nombre</th>
                                           <th>Edad</th>
+                                          <th>Actualizar</th>
                                       </tr>
                                   </tfoot>
                               </table>

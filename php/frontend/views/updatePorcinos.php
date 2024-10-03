@@ -1,7 +1,5 @@
 <?php
-  // Obtener la información de los porcinos desde el controlador
-  $controller = new Controller();
-  $porcino = $controller->getPorcinoById($_GET['id']); // Obtener un porcino por su ID
+
 ?>
 
 <!DOCTYPE html>
@@ -149,8 +147,6 @@
                 </div>
                 <div class="card-body row">
                   <div class="col-md-12">
-                    <input type="hidden" name="id" value="<?php echo $porcino['id']; ?>">
-
                     <div class="form-group">
                       <label for="nombre">Nombre del Porcino</label>
                       <input type="text" class="form-control" name="nombre" id="nombre" value="<?php echo $porcino['nombre']; ?>" required>
@@ -172,6 +168,7 @@
                     </div>
                   </div>
                 </div>
+                <input type="text" hidden value="<?php echo $_GET['id']?>" name="id">
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary">Actualizar Porcino</button>
                   <button type="button" class="btn btn-secondary" id="updateGraphQLBtn">Actualizar con GraphQL</button>

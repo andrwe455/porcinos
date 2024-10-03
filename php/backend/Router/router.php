@@ -4,8 +4,7 @@ class Router
 {
     private $routes = [];
 
-    public function add($method, $path, $controller, $action)
-    {
+    public function add($method, $path, $controller, $action){
         $this->routes[] = [
             'method' => strtoupper($method),
             'path' => $path,
@@ -14,8 +13,7 @@ class Router
         ];
     }
 
-    public function dispatch($requestUri, $requestMethod)
-    {
+    public function dispatch($requestUri, $requestMethod){
         // Extraer la parte de la URI sin la cadena de consulta
         $uri = parse_url($requestUri, PHP_URL_PATH);
         $query = parse_url($requestUri, PHP_URL_QUERY);
@@ -34,8 +32,7 @@ class Router
         exit();
     }
 
-    private function match($routePath, $requestUri, &$params)
-    {
+    private function match($routePath, $requestUri, &$params){
         $pattern = preg_replace('/\{([a-zA-Z0-9_]+)\}/', '(?P<$1>[a-zA-Z0-9_]+)', $routePath);
         $pattern = str_replace('/', '\/', $pattern);
         $pattern = "#^$pattern$#";

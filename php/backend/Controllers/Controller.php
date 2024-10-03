@@ -71,7 +71,7 @@
 
       $collection->insertOne($data);
 
-      //header('Location: /porcinos');
+      header('Location: /porcinos');
     }
     public function setclienteInfo() {
       $client = Mongo::connect();
@@ -79,13 +79,13 @@
       echo json_encode($_POST);
       $data = [
         'identificacion' => $_POST['identificacion'],
-        'Nombre' => $_POST['Nombre'],
+        'Nombre' => $_POST['nombre'],
         'Edad' => $_POST['edad']
       ];
 
       $collection->insertOne($data);
 
-      //header('Location: /porcinos');
+      header('Location: /cliente');
     }
 
     public function deletePorcino($id) {
@@ -96,7 +96,7 @@
       $collection->deleteOne(['_id' => new MongoDB\BSON\ObjectId($id)]);
 
 
-    // header('Location: /porcinos');
+      header('Location: /cliente');
     }
 
     public function deleteCliente($id) {
@@ -122,24 +122,23 @@
         return $porcino;
     }
 
-    public function updatePorcino($id, $nombre, $raza, $edad, $peso) {
+    public function updatePorcino() {
         // Conectar a MongoDB
         $client = Mongo::connect();
         $collection = $client->porcinos->porcinos;
 
         // Actualizar el porcino
         $result = $collection->updateOne(
-            ['_id' => new MongoDB\BSON\ObjectId($id)],
+            ['_id' => new MongoDB\BSON\ObjectId($_POST['id'])],
             ['$set' => [
-                'nombre' => $nombre,
-                'raza' => $raza,
-                'edad' => $edad,
-                'peso' => $peso
+                'nombre' => $_POST['nombre'],
+                'Raza' => $_POST['raza'],
+                'edad' => $_POST['edad'],
+                'peso' => $_POST['peso']
             ]]
         );
 
-        // Comprobar si la actualización fue exitosa
-        return $result->getModifiedCount() > 0;
+        header('Location: /porcinos');
     }
 
     public function getClientById($id) {
@@ -159,11 +158,11 @@
 
         // Actualizar el cliente
         $result = $collection->updateOne(
-            ['_id' => new MongoDB\BSON\ObjectId($id)],
+            ['_id' => new MongoDB\BSON\ObjectId($id ?? $_POST['id'])],
             ['$set' => [
-                'Nombre' => $nombre,
-                'Edad' => $edad,
-                'identificacion' => $identificacion
+                'Nombre' => $nombre ?? $_POST['nombre'],
+                'Edad' => $edad ?? $_POST['edad'],
+                'identificacion' => $identificacion ?? $_POST['identificacion']
             ]]
         );
 
@@ -190,7 +189,9 @@
         }
     }
     public function handleClientUpdateRequest() {
+      echo 'hola';
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+          echo json_encode($_POST);
             // Obtener los datos enviados por el formulario
             $id = $_POST['id'];
             $nombre = $_POST['nombre'];
@@ -202,12 +203,13 @@
 
             // Redirigir según el resultado de la actualización
             if ($success) {
-                header("Location: /clientes?status=success");
+                //header("Location: /clientes?status=success");
             } else {
-                header("Location: /clientes?status=error");
+                //header("Location: /clientes?status=error");
             }
         }
     }
+
     // Resolver para obtener todos los porcinos (GraphQL Query)
     public function resolveGetPorcinos() {
         return $this->getPorcinosInfo();
@@ -253,7 +255,8 @@
 
     // Resolver para actualizar un porcino (GraphQL Mutation)
     public function resolveUpdatePorcino($root, $args) {
-        return $this->updatePorcino($args['id'], $args['nombre'], $args['raza'], $args['edad'], $args['peso']);
+
+      return $this->updatePorcino($args['id'], $args['nombre'], $args['raza'], $args['edad'], $args['peso']);
     }
 
     // Resolver para actualizar un cliente (GraphQL Mutation)

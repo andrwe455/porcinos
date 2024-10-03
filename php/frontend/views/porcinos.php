@@ -202,6 +202,9 @@
                                           <th>
                                             Dosificacion
                                           </th>
+                                          <th>
+                                            Actualizar
+                                          </th>
                                       </tr>
                                   </thead>
                                   <tbody class="text-center">
@@ -215,6 +218,7 @@
                                           echo "<td>".$porcino['Cliente']."</td>";
                                           echo "<td>".$porcino['Alimentacion']['Descripcion']."</td>";
                                           echo "<td>".$porcino['Alimentacion']['dosis']."</td>";
+                                          echo "<td><a href='/updatePorcinos?id=".$porcino['_id']."'class='nav-link'>Actualizar</a></td>";
                                           echo "</tr>";
                                         }
                                       ?>  
@@ -228,6 +232,7 @@
                                           <th rowspan="1" colspan="1">Cliente</th>
                                           <th rowspan="1" colspan="1">Descipcion alimentacion</th>
                                           <th rowspan="1" colspan="1">Dosificacion</th>
+                                          <th rowspan="1" colspan="1">Actualizar</th>
                                       </tr>
                                   </tfoot>
                               </table>

@@ -1,7 +1,4 @@
 <?php
-  // Obtener la información del cliente desde el controlador
-  $controller = new Controller();
-  $cliente = $controller->getClientById($_GET['id']); // Obtener un cliente por su ID
 ?>
 
 <!DOCTYPE html>
@@ -149,7 +146,7 @@
                 </div>
                 <div class="card-body row">
                   <div class="col-md-12">
-                    <input type="hidden" name="id" value="<?php echo $cliente['id']; ?>">
+                  <input type="text" hidden value="<?php echo $_GET['id']?>" name="id">
 
                     <div class="form-group">
                       <label for="nombre">Nombre del Cliente</label>
@@ -191,34 +188,50 @@
 <script src="../Frontend/js/plugins/adminlte.min.js"></script>
 <script>
   $(document).ready(function() {
+    // Evento al hacer clic en el botón de actualizar
     $("#updateGraphQLBtn").click(function() {
+      // Obtener los valores de los campos de entrada
       const id = $("input[name='id']").val();
       const nombre = $("input[name='nombre']").val();
       const edad = $("input[name='edad']").val();
       const identificacion = $("input[name='identificacion']").val();
-
+      
+      // Crear la mutación GraphQL
       const query = `
         mutation {
-          updateCliente(id: "${id}", nombre: "${nombre}", edad: ${edad}, identificacion: "${identificacion}") {
-            id
-            nombre
-            edad
+          updateCliente(_id: "${id}", Nombre: "${nombre}", Edad: ${edad}, identificacion: "${identificacion}") {
+            _id
+            Nombre
+            Edad
             identificacion
           }
         }
       `;
 
+      // Validar que los campos no estén vacíos antes de realizar la solicitud
+      if (!id || !nombre || !edad || !identificacion) {
+        alert('Todos los campos son obligatorios.');
+        return;
+      }
+
+      // Realizar la solicitud AJAX al servidor GraphQL
       $.ajax({
-        url: '/graphql', // Cambia esto según la ruta de tu endpoint GraphQL
+        url: '/graphqlC', // Ruta del endpoint GraphQL
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify({ query: query }),
         success: function(response) {
-          alert('Cliente actualizado exitosamente');
-          console.log(response);
+          // Manejar la respuesta del servidor
+          if (response.errors) {
+            alert('Error en la actualización: ' + response.errors[0].message);
+          } else {
+            alert('Cliente actualizado exitosamente');
+            console.log(response);
+          }
         },
         error: function(xhr, status, error) {
-          alert('Error al actualizar el cliente: ' + error);
+          // Manejar cualquier error en la solicitud
+          alert('Error en la solicitud: ' + error);
           console.error(xhr);
         }
       });
