@@ -149,22 +149,22 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label for="nombre">Nombre del Porcino</label>
-                      <input type="text" class="form-control" name="nombre" id="nombre" value="<?php echo $porcino['nombre']; ?>" required>
+                      <input type="text" class="form-control" name="nombre" id="nombre" value="" required>
                     </div>
 
                     <div class="form-group">
                       <label for="raza">Raza</label>
-                      <input type="text" class="form-control" name="raza" id="raza" value="<?php echo $porcino['raza']; ?>" required>
+                      <input type="text" class="form-control" name="raza" id="raza" value="" required>
                     </div>
 
                     <div class="form-group">
                       <label for="edad">Edad</label>
-                      <input type="number" class="form-control" name="edad" id="edad" value="<?php echo $porcino['edad']; ?>" required>
+                      <input type="number" class="form-control" name="edad" id="edad" value="" required>
                     </div>
 
                     <div class="form-group">
                       <label for="peso">Peso</label>
-                      <input type="number" class="form-control" name="peso" id="peso" value="<?php echo $porcino['peso']; ?>" required>
+                      <input type="number" class="form-control" name="peso" id="peso" value="" required>
                     </div>
                   </div>
                 </div>

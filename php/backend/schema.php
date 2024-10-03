@@ -118,7 +118,7 @@ class GraphQLSchemaBuilder {
                     ],
                     'resolve' => function($root, $args) {
                         $controller = new Controller();
-                        return $controller->updateClient($args['id'], $args['Nombre'], $args['Edad'], $args['identificacion']);
+                        return $controller->updateClient($args['_id'], $args['Nombre'], $args['Edad'], $args['identificacion']);
                     }
                 ],
                 'updatePorcino' => [
